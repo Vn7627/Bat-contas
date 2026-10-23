@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+
+  <title>BAT CONTAS | Recompensas</title>
+
+  <style>
+    :root {
+      --red: #ff1538;
+      --dark-red: #9d001b;
+      --black: #080808;
+      --card: #141414;
+      --white: #ffffff;
+      --gray: #c2c2c2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(ellipse at top, #35000d 0%, transparent 48%),
+        var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* CABEÇALHO */
+
+    header {
+      position: relative;
+      text-align: center;
+      padding: 48px 18px 35px;
+      border-bottom: 1px solid #42101a;
+      overflow: hidden;
+    }
+
+    .logo {
+      color: var(--red);
+      font-size: clamp(2.6rem, 9vw, 4.8rem);
+      font-weight: 1000;
+      letter-spacing: 4px;
+      line-height: 1.2;
+      text-shadow:
+        0 0 10px #ff1538,
+        0 0 25px #ff153877,
+        0 0 50px #a00020;
+      animation: brilho 2s ease-in-out infinite alternate;
+    }
+
+    .subtitulo {
+      margin-top: 12px;
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .linha {
+      width: 100px;
+      height: 4px;
+      margin: 20px auto 0;
+      border-radius: 10px;
+      background: var(--red);
+      box-shadow: 0 0 18px var(--red);
+    }
+
+    /* MENU */
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 17px 12px;
+      background: #101010;
+      border-bottom: 1px solid #292929;
+    }
+
+    nav a {
+      padding: 8px 12px;
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 7px;
+      transition: 0.25s;
+    }
+
+    nav a:hover {
+      color: var(--red);
+      background: #251015;
+    }
+
+    /* CONTEÚDO */
+
+    main {
+      width: min(100% - 30px, 900px);
+      margin: 30px auto;
+    }
+
+    .hero {
+      padding: 35px 15px;
+      text-align: center;
+      animation: subir 0.7s ease both;
+    }
+
+    .hero h2 {
+      font-size: clamp(1.7rem, 5vw, 2.5rem);
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--gray);
+    }
+
+    /* CARTÕES */
+
+    .card {
+      position: relative;
+      padding: 25px;
+      margin: 23px 0;
+      background: linear-gradient(145deg, #191919, #101010);
+      border: 1px solid #45202a;
+      border-radius: 17px;
+      box-shadow: 0 8px 28px #0009;
+      animation: subir 0.7s ease both;
+    }
+
+    .card h2 {
+      color: var(--red);
+      font-size: 1.5rem;
+      margin-bottom: 13px;
+    }
+
+    .card p,
+    .card li {
+      color: var(--gray);
+    }
+
+    .card ol,
+    .card ul {
+      padding-left: 23px;
+      margin-top: 15px;
+    }
+
+    .card li {
+      padding-left: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* BOTÕES */
+
+    .botao {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px 18px;
+      border: 1px solid #ff536b;
+      border-radius: 10px;
+      background: linear-gradient(100deg, #a90020, #ff1538);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0.6px;
+      box-shadow: 0 0 16px #ff153833;
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        filter 0.25s;
+      animation: pulsar 2s infinite;
+    }
+
+    .botao:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 0 25px #ff153899;
+      filter: brightness(1.12);
+    }
+
+    .botao:active {
+      transform: scale(0.98);
+    }
+
+    .icone {
+      display: inline-block;
+      margin-right: 7px;
+      font-size: 1.2rem;
+    }
+
+    /* AVISOS */
+
+    .aviso {
+      border-left: 4px solid var(--red);
+    }
+
+    .aviso strong {
+      color: white;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      padding: 30px 18px;
+      margin-top: 45px;
+      text-align: center;
+      background: #0d0d0d;
+      border-top: 1px solid #42101a;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    footer p {
+      margin: 6px 0;
+    }
+
+    footer strong {
+      color: var(--red);
+      letter-spacing: 2px;
+    }
+
+    /* ANIMAÇÕES */
+
+    @keyframes brilho {
+      from {
+        text-shadow: 0 0 8px #ff1538;
+      }
+
+      to {
+        text-shadow:
+          0 0 18px #ff1538,
+          0 0 35px #ff1538,
+          0 0 55px #a00020;
+      }
+    }
+
+    @keyframes pulsar {
+      0%, 100% {
+        box-shadow: 0 0 10px #ff153833;
+      }
+
+      50% {
+        box-shadow: 0 0 22px #ff153866;
+      }
+    }
+
+    @keyframes subir {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CELULARES */
+
+    @media (max-width: 600px) {
+      header {
+        padding: 38px 12px 30px;
+      }
+
+      nav {
+        gap: 4px;
+      }
+
+      nav a {
+        padding: 8px;
+        font-size: 0.82rem;
+      }
+
+      main {
+        width: calc(100% - 22px);
+        margin-top: 20px;
+      }
+
+      .card {
+        padding: 20px;
+        border-radius: 13px;
+      }
+
+      .card h2 {
+        font-size: 1.3rem;
+      }
+
+      .hero {
+        padding: 25px 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO -->
+  <header id="inicio">
+    <h1 class="logo">BAT CONTAS</h1>
+
+    <p class="subtitulo">
+      🔥 Confira as instruções e conheça as recompensas!
+    </p>
+
+    <div class="linha"></div>
+  </header>
+
+  <!-- MENU -->
+  <nav aria-label="Menu principal">
+    <a href="#inicio">Início</a>
+    <a href="#passos">Passo a passo</a>
+    <a href="#robux">Robux</a>
+    <a href="#diamantes">Diamantes</a>
+    <a href="#contas">Contas</a>
+  </nav>
+
+  <main>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="hero">
+      <h2>🚀 Bem-vindo à BAT CONTAS</h2>
+
+      <p>
+        Confira o passo a passo abaixo e selecione a recompensa
+        que deseja consultar. Leia as condições antes de participar.
+      </p>
+    </section>
+
+    <!-- PASSO A PASSO: SEM BOTÃO -->
+    <section class="card" id="passos">
+      <h2>📱 Como participar</h2>
+
+      <ol>
+        <li>
+          Leia todas as instruções desta página.
+        </li>
+
+        <li>
+          Escolha uma das opções de recompensa abaixo.
+        </li>
+
+        <li>
+          Você será direcionado ao link do TikTok Lite.
+        </li>
+
+        <li>
+          Se o aplicativo for solicitado, faça o download
+          pela loja oficial do seu celular.
+        </li>
+
+        <li>
+          Abra o aplicativo e confira as regras e os requisitos
+          da promoção apresentada pelo próprio TikTok.
+        </li>
+
+        <li>
+          Siga as instruções oficiais e verifique se sua
+          participação foi confirmada.
+        </li>
+
+        <li>
+          Consulte as condições de entrega antes de considerar
+          uma recompensa confirmada.
+        </li>
+      </ol>
+    </section>
+
+    <!-- ROBUX -->
+    <section class="card" id="robux">
+      <h2>🎮 Ganhe Robux aqui</h2>
+
+      <p>
+        Toque no botão para abrir o TikTok Lite e conferir
+        as instruções da promoção.
+      </p>
+
+      <a
+        class="botao"
+        href="https://www.tiktok.com/d/4/ZS9UcJvfjekk4-vpIyy/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icone">🎮</span>
+        GANHE ROBUX AQUI
+      </a>
+    </section>
+
+    <!-- DIAMANTES -->
+    <section class="card" id="diamantes">
+      <h2>💎 Ganhe diamantes aqui</h2>
+
+      <p>
+        Acesse o link e confira as condições da promoção.
+        A disponibilidade de diamantes depende das regras
+        e da confirmação da recompensa.
+      </p>
+
+      <a
+        class="botao"
+        href="https://www.tiktok.com/d/4/ZS9UcJvfjekk4-vpIyy/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icone">💎</span>
+        GANHE DIAMANTES AQUI
+      </a>
+    </section>
+
+    <!-- CONTAS -->
+    <section class="card" id="contas">
+      <h2>🔥 Ganhe uma conta aqui</h2>
+
+      <p>
+        Toque no botão para abrir o TikTok Lite e consultar
+        as instruções de participação.
+      </p>
+
+      <a
+        class="botao"
+        href="https://www.tiktok.com/d/4/ZS9UcJvfjekk4-vpIyy/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span class="icone">🔥</span>
+        GANHE UMA CONTA AQUI
+      </a>
+    </section>
+
+    <!-- AVISOS -->
+    <section class="card aviso" id="avisos">
+      <h2>⚠️ Avisos importantes</h2>
+
+      <ul>
+        <li>
+          <strong>Sem garantia:</strong>
+          os botões abrem o TikTok Lite e não confirmam
+          a entrega de prêmios.
+        </li>
+
+        <li>
+          Confira as regras e os requisitos da promoção
+          diretamente nos canais oficiais.
+        </li>
+
+        <li>
+          Nunca compartilhe senhas ou códigos de verificação.
+        </li>
+
+        <li>
+          Não pague taxas inesperadas para liberar supostos prêmios.
+        </li>
+
+        <li>
+          Oculte informações pessoais antes de enviar capturas de tela.
+        </li>
+
+        <li>
+          Baixe aplicativos somente pelas lojas oficiais.
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p><strong>BAT CONTAS © 2026</strong></p>
+
+    <p>
+      Site independente, sem afiliação oficial com TikTok,
+      Roblox ou Free Fire.
+    </p>
+
+    <p>
+      As marcas mencionadas pertencem aos seus respectivos proprietários.
+    </p>
+  </footer>
+
+</body>
+</html>
